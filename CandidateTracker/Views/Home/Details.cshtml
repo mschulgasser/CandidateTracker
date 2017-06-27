@@ -1,0 +1,27 @@
+﻿@using Candidates.Data
+@using CandidateTracker.Models
+@model DetailsViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 well">
+        <h3>Name: @Model.Candidate.FirstName @Model.Candidate.LastName</h3>
+        <h3>Email: @Model.Candidate.Email</h3>
+        <h3>Phone Number: @Model.Candidate.PhoneNumber</h3>
+        <h3 id="status">Status: @((CandidateStatus)Model.Candidate.Status)</h3>
+        <h3>Notes: </h3>
+        <p>@Model.Candidate.Notes</p>
+        @if (Model.Candidate.Status == (int)CandidateStatus.Pending)
+        {
+            <button class="btn btn-success accept" data-id="@Model.Candidate.Id">Accept</button>
+            <button class="btn btn-danger reject" data-id="@Model.Candidate.Id">Reject</button>
+        }
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/details.js"></script>
+}

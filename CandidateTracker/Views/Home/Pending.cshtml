@@ -1,0 +1,32 @@
+﻿@using Candidates.Data
+@using CandidateTracker.Models
+@model CandidatesViewModel
+@{
+    ViewBag.Title = "Pending";
+}
+
+<h2>Pending</h2>
+<button id="toggle" class="btn btn-info">Toggle Notes</button>
+<table class="table table-hover table-bordered table-striped">
+    <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Notes</th>
+    </tr>
+    @foreach (Candidate c in Model.Candidates)
+    {
+        <tr>
+            <td><a href="/home/details?id=@c.Id" class="btn btn-info">View Details</a></td>
+            <td>@c.FirstName @c.LastName</td>
+            <td>@c.Email</td>
+            <td>@c.PhoneNumber</td>
+            <td>@c.Notes</td>
+        </tr>
+    }
+</table>
+@section scripts
+{
+    <script src="/Scripts/candidates.js"></script>
+}
